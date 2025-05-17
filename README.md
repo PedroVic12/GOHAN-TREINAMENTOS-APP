@@ -1,114 +1,44 @@
 # GeminiStudy
 
-GeminiStudy é uma aplicação web Next.js que utiliza Inteligência Artificial Generativa para fornecer aos usuários resumos, flashcards e quizzes gerados a partir de seus documentos PDF enviados. Foi projetada com uma interface limpa e moderna usando Tailwind CSS e componentes ShadCN UI.
+**GeminiStudy** é uma aplicação web construída com Next.js que utiliza Inteligência Artificial Generativa para oferecer aos usuários resumos, flashcards e quizzes gerados a partir de documentos PDF enviados. A interface é limpa e moderna, desenvolvida com Tailwind CSS e componentes da ShadCN UI.
+
+---
 
 ## Funcionalidades Principais
 
--   **Upload de PDF:** Usuários podem enviar arquivos PDF e atribuir um nome à sessão.
--   **Análise por IA:**
-    -   **Geração de Resumo:** Obtenha um resumo conciso do conteúdo do PDF.
-    -   **Geração de Flashcards:** Crie 10 flashcards baseados em informações chave do PDF.
-    -   **Geração de Quiz:** Gere um quiz de múltipla escolha com 10 perguntas a partir do PDF.
--   **Exibição de Resultados em Abas:** Visualize o resumo, flashcards e quiz gerados em uma interface intuitiva com abas.
--   **Design Responsivo:** A aplicação é totalmente responsiva e funciona em diversos dispositivos.
+- **Upload de PDF:** Usuários podem enviar arquivos PDF e nomear a sessão correspondente.  
+- **Análise por IA:**  
+  - **Resumo:** Geração automática de um resumo conciso do conteúdo do PDF.  
+  - **Flashcards:** Criação de 10 flashcards com informações chave extraídas do PDF.  
+  - **Quiz:** Geração de um quiz de múltipla escolha com 10 perguntas baseadas no conteúdo.  
+- **Exibição em Abas:** Os resultados são organizados em uma interface intuitiva com abas para fácil navegação entre resumo, flashcards e quiz.  
+- **Design Responsivo:** A aplicação é totalmente responsiva, garantindo ótimo funcionamento em diferentes dispositivos.  
+
+---
 
 ## Stack Tecnológica
 
--   Next.js (App Router)
--   React
--   TypeScript
--   Tailwind CSS
--   ShadCN UI
--   Lucide Icons
--   Genkit (para integração de fluxo de IA com Google Gemini)
+- Next.js (App Router)  
+- React  
+- TypeScript  
+- Tailwind CSS  
+- ShadCN UI  
+- Lucide Icons  
+- Genkit (para integração dos fluxos de IA com Google Gemini)  
 
-## Começando
+---
+
+## Como Começar
 
 ### Pré-requisitos
 
--   Node.js (v18 ou superior recomendado)
--   npm ou yarn
+- Node.js (versão 18 ou superior recomendada)  
+- npm ou yarn  
 
 ### Rodando Localmente
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone <repository-url>
-    cd gemini-study # Ou o nome do diretório do seu projeto
-    ```
+1. Clone o repositório:  
+   ```bash
+   git clone <repository-url>
+   cd gemini-study
 
-2.  **Instale as dependências:**
-    ```bash
-    npm install
-    yarn install
-    ```
-
-3.  **Configure Variáveis de Ambiente:**
-    Para a integração com a IA (Google Gemini), crie um arquivo `.env.local` na raiz do seu projeto e adicione sua chave de API:
-    ```
-    GOOGLE_API_KEY=sua_google_api_key_aqui
-    ```
-    A configuração do Genkit (`src/ai/dev.ts`) usa `dotenv` para carregar esta variável em ambiente de desenvolvimento local.
-
-4.  **Rode os servidores de desenvolvimento:**
-    A aplicação usa dois servidores de desenvolvimento: um para o app Next.js e um para os fluxos Genkit.
-
-    -   **Inicie o app Next.js:**
-        ```bash
-        npm run dev
-        ```
-        Isso tipicamente iniciará o app em `http://localhost:9002`.
-
-    -   **Inicie o servidor de desenvolvimento Genkit (em um terminal separado):**
-        ```bash
-        npm run genkit:dev
-        npm run genkit:watch
-        ```
-        Isso inicia a UI de desenvolvedor do Genkit, geralmente em `http://localhost:4000`, permitindo que você inspecione e teste seus fluxos de IA.
-
-5.  **Abra seu navegador:**
-    Navegue para `http://localhost:9002` (ou a porta especificada no seu script `dev`) para usar a aplicação.
-
-## Deploy no Vercel
-
-Fazer o deploy do GeminiStudy no Vercel é direto:
-
-1.  **Envie seu código para um repositório Git** (ex: GitHub, GitLab, Bitbucket).
-2.  **Cadastre-se ou Faça Login no Vercel.**
-3.  **Importe seu repositório Git:**
-    -   Clique em "Add New..." -> "Project".
-    -   Selecione seu provedor Git e importe o repositório contendo seu projeto GeminiStudy.
-4.  **Configure as Configurações do Projeto:**
-    -   O Vercel deve detectar automaticamente que é um projeto Next.js.
-    -   **Configurações de Build & Desenvolvimento:**
-        -   Framework Preset: Next.js (deve ser detectado automaticamente).
-        -   Build Command: `npm run build` (ou `yarn build` se você usar yarn).
-        -   Output Directory: `.next` (padrão do Next.js).
-        -   Install Command: `npm install` (ou `yarn install`).
-    -   **Variáveis de Ambiente:** Adicione a variável `GOOGLE_API_KEY` nas configurações do projeto no Vercel. Vá para o seu projeto no Vercel -> Settings -> Environment Variables.
-5.  **Deploy.**
-    O Vercel fará o build e o deploy da sua aplicação. Uma vez concluído, você receberá uma URL única para o seu site ao vivo. O arquivo `vercel.json` incluído no projeto ajuda a garantir que a Vercel use as configurações corretas para um projeto Next.js.
-
-**Nota Importante para Fluxos de IA Genkit no Vercel:**
-- Suas chaves de API (`GOOGLE_API_KEY`) devem estar corretamente configuradas como variáveis de ambiente no Vercel.
-- Os fluxos Genkit são usados como Server Actions dentro do Next.js, o que é compatível com o ambiente serverless da Vercel.
-
-## Otimizações Futuras
-
--   **Cache de Resultados:** Implementar cache (ex: usando Vercel KV, Redis, ou outras soluções de banco de dados) para resumos, flashcards e quizzes gerados para evitar reprocessar o mesmo PDF e acelerar o acesso para requisições repetidas.
--   **Suporte para Outros Formatos de Arquivo:** Estender a funcionalidade para suportar outros tipos de documentos como `.docx`, `.txt`, etc., adicionando lógica de extração de texto apropriada.
--   **Extração de Texto PDF Aprimorada:** Integrar bibliotecas de parse de PDF mais sofisticadas para lidar com layouts complexos, imagens com texto e documentos escaneados de forma mais eficaz.
--   **Contas de Usuário & Histórico:** Permitir que usuários criem contas para salvar seus PDFs processados e insights gerados para referência futura.
--   **Recursos Avançados de Quiz:** Incluir diferentes tipos de perguntas, mecanismos de feedback e acompanhamento de desempenho.
--   **Geração Seletiva:** Permitir que usuários escolham quais insights (resumo, flashcards, quiz) desejam gerar.
--   **Carregamento Progressivo:** Carregar componentes de insights (resumo, flashcards, quiz) individualmente à medida que são gerados para melhorar a performance percebida.
-
-## Acessibilidade
-
-Considerações básicas de acessibilidade foram incluídas:
--   Elementos HTML semânticos.
--   Rótulos para inputs de formulário (`<label htmlFor="...">`).
--   Navegabilidade por teclado e visibilidade de foco para elementos interativos (amplamente tratados pelos componentes ShadCN UI).
--   Atributos ARIA onde apropriado.
-
-Auditorias de acessibilidade adicionais e melhorias podem ser feitas à medida que o projeto evolui.
