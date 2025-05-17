@@ -147,7 +147,7 @@ export default function InsightsPage() {
       <header className="mb-6 py-4 border-b">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-primary">
-            {sessionName ? `Insights para: ${sessionName}` : "Insights do PDF"}
+            {sessionName ? `GeminiStudy para: ${sessionName}` : "GeminiStudy Insights"}
           </h1>
           <ThemeToggle />
         </div>
@@ -155,13 +155,13 @@ export default function InsightsPage() {
       
       <Tabs defaultValue="summary" className="w-full flex-grow flex flex-col">
         <TabsList className="mx-auto mb-6 grid w-full max-w-md grid-cols-3">
-          <TabsTrigger value="summary" className="py-3 text-base">
+          <TabsTrigger value="summary" className="py-4 text-base">
             <BookOpen className="mr-2 h-5 w-5" /> Resumo
           </TabsTrigger>
-          <TabsTrigger value="flashcards" className="py-3 text-base">
+          <TabsTrigger value="flashcards" className="py-4 text-base">
             <Layers className="mr-2 h-5 w-5" /> Flashcards
           </TabsTrigger>
-          <TabsTrigger value="quiz" className="py-3 text-base">
+          <TabsTrigger value="quiz" className="py-4 text-base">
             <HelpCircle className="mr-2 h-5 w-5" /> Quiz
           </TabsTrigger>
         </TabsList>
@@ -185,10 +185,9 @@ export default function InsightsPage() {
         </div>
       </Tabs>
        <footer className="text-center py-4 mt-8 border-t text-sm text-muted-foreground">
-        PDF Insights - Desenvolvido com IA
+        GeminiStudy - Desenvolvido com IA
       </footer>
     </div>
   );
 }
-
     

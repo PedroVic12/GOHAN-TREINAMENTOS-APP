@@ -12,7 +12,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateQuizInputSchema = z.object({
-  pdfContent: z.string().describe('The content of the PDF as a string.'),
+  pdfContent: z.string().describe('The content of the PDF as a string, expected to be in Portuguese.'),
 });
 export type GenerateQuizInput = z.infer<typeof GenerateQuizInputSchema>;
 
@@ -20,12 +20,12 @@ const GenerateQuizOutputSchema = z.object({
   quiz: z
     .array(
       z.object({
-        question: z.string().describe('The quiz question.'),
-        options: z.array(z.string()).describe('The multiple choice options.'),
-        answer: z.string().describe('The correct answer to the question.'),
+        question: z.string().describe('A pergunta do quiz em português do Brasil.'),
+        options: z.array(z.string()).describe('As opções de múltipla escolha em português do Brasil.'),
+        answer: z.string().describe('A resposta correta para a pergunta em português do Brasil.'),
       })
     )
-    .describe('A quiz with multiple choice questions and answers.'),
+    .describe('Um quiz com perguntas de múltipla escolha e respostas, tudo em português do Brasil.'),
 });
 export type GenerateQuizOutput = z.infer<typeof GenerateQuizOutputSchema>;
 
@@ -37,13 +37,13 @@ const prompt = ai.definePrompt({
   name: 'generateQuizPrompt',
   input: {schema: GenerateQuizInputSchema},
   output: {schema: GenerateQuizOutputSchema},
-  prompt: `You are an expert in creating quizzes from text.
+  prompt: `Você é um especialista em criar quizzes a partir de textos.
 
-  Create a quiz with 5 questions based on the content below. Each question should have 4 multiple choice options, with one correct answer.
+  Crie um quiz com 10 perguntas em português do Brasil com base no conteúdo abaixo (que está em português). Cada pergunta deve ter 4 opções de múltipla escolha, com uma resposta correta.
 
-  The quiz should test the user's understanding of the material. Focus on key facts and concepts.
+  O quiz deve testar o entendimento do usuário sobre o material. Foque nos fatos e conceitos chave. As perguntas, opções e a resposta correta devem estar em português do Brasil.
 
-  Content: {{{pdfContent}}}
+  Conteúdo: {{{pdfContent}}}
   `,
 });
 

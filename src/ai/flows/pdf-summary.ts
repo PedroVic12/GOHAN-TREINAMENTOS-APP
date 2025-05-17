@@ -21,8 +21,8 @@ const PdfSummaryInputSchema = z.object({
 export type PdfSummaryInput = z.infer<typeof PdfSummaryInputSchema>;
 
 const PdfSummaryOutputSchema = z.object({
-  summary: z.string().describe('A concise summary of the PDF document.'),
-  progress: z.string().describe('Progress messages to display to the user.'),
+  summary: z.string().describe('Um resumo conciso do documento PDF em português do Brasil.'),
+  progress: z.string().describe('Mensagens de progresso para exibir ao usuário.'),
 });
 export type PdfSummaryOutput = z.infer<typeof PdfSummaryOutputSchema>;
 
@@ -34,7 +34,7 @@ const pdfSummaryPrompt = ai.definePrompt({
   name: 'pdfSummaryPrompt',
   input: {schema: PdfSummaryInputSchema},
   output: {schema: PdfSummaryOutputSchema},
-  prompt: `You are an expert summarizer.  Summarize the following PDF document, extract all the key ponts, and create a concise and accurate summary.\n\nPDF Document: {{media url=pdfDataUri}}`,
+  prompt: `Você é um especialista em sumarização. Resuma o seguinte documento PDF em português do Brasil. Extraia todos os pontos-chave e crie um resumo conciso e preciso.\n\nDocumento PDF: {{media url=pdfDataUri}}`,
 });
 
 const pdfSummaryFlow = ai.defineFlow(
@@ -47,7 +47,7 @@ const pdfSummaryFlow = ai.defineFlow(
     const {output} = await pdfSummaryPrompt(input);
     return {
       ...output!,
-      progress: 'Generated a concise summary of the PDF content.',
+      progress: 'Gerou um resumo conciso do conteúdo do PDF.',
     };
   }
 );

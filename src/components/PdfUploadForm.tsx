@@ -93,7 +93,7 @@ export function PdfUploadForm() {
   return (
     <Card className="w-full max-w-lg shadow-2xl">
       <CardHeader>
-        <CardTitle className="text-3xl font-bold text-center text-primary">PDF Insights</CardTitle>
+        <CardTitle className="text-3xl font-bold text-center text-primary">GeminiStudy</CardTitle>
         <CardDescription className="text-center">
           Envie um PDF para gerar um resumo, flashcards e um quiz com IA.
         </CardDescription>
@@ -156,5 +156,3 @@ export function PdfUploadForm() {
     </Card>
   );
 }
-
-    

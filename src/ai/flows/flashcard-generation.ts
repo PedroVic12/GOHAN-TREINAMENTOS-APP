@@ -11,16 +11,16 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateFlashcardsInputSchema = z.object({
-  pdfText: z.string().describe('The text content extracted from the PDF.'),
+  pdfText: z.string().describe('The text content extracted from the PDF, expected to be in Portuguese.'),
 });
 export type GenerateFlashcardsInput = z.infer<typeof GenerateFlashcardsInputSchema>;
 
 const FlashcardSchema = z.object({
-  question: z.string().describe('The question for the flashcard.'),
-  answer: z.string().describe('The answer to the question.'),
+  question: z.string().describe('A pergunta para o flashcard em português do Brasil.'),
+  answer: z.string().describe('A resposta para a pergunta em português do Brasil.'),
 });
 
-const GenerateFlashcardsOutputSchema = z.array(FlashcardSchema).describe('An array of flashcards generated from the PDF content.');
+const GenerateFlashcardsOutputSchema = z.array(FlashcardSchema).describe('Um array de flashcards gerados a partir do conteúdo do PDF, em português do Brasil.');
 export type GenerateFlashcardsOutput = z.infer<typeof GenerateFlashcardsOutputSchema>;
 
 export async function generateFlashcards(input: GenerateFlashcardsInput): Promise<GenerateFlashcardsOutput> {
@@ -31,14 +31,14 @@ const prompt = ai.definePrompt({
   name: 'generateFlashcardsPrompt',
   input: {schema: GenerateFlashcardsInputSchema},
   output: {schema: GenerateFlashcardsOutputSchema},
-  prompt: `You are an expert educator, skilled at creating effective flashcards for students.
+  prompt: `Você é um educador especialista, habilidoso em criar flashcards eficazes para estudantes.
 
-  Given the following text from a PDF document, generate 5 flashcards that will help students memorize the key information.
-  Each flashcard should have a question and a corresponding answer.
+  Dado o seguinte texto de um documento PDF (que está em português), gere 10 flashcards em português do Brasil que ajudarão os estudantes a memorizar as informações chave.
+  Cada flashcard deve ter uma pergunta e uma resposta correspondente.
 
-  Text: {{{pdfText}}}
+  Texto: {{{pdfText}}}
 
-  Format the output as a JSON array of flashcard objects, where each object has a 'question' and an 'answer' field.
+  Formate a saída como um array JSON de objetos de flashcard, onde cada objeto possui os campos 'question' (pergunta) e 'answer' (resposta), ambos em português do Brasil.
   `, config: {
     safetySettings: [
       {

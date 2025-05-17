@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PDF Insights',
-  description: 'Gere resumos, flashcards e quizzes a partir dos seus documentos PDF.',
+  title: 'GeminiStudy',
+  description: 'Gere resumos, flashcards e quizzes a partir dos seus documentos PDF com GeminiStudy.',
 };
 
 export default function RootLayout({
