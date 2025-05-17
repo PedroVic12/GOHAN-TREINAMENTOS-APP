@@ -1,13 +1,12 @@
-
 "use client";
 
-import type { FC } from 'react';
-import { useState } from 'react';
+import type { FC } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
-import type { FlashcardType } from '@/lib/types';
-import { cn } from '@/lib/utils';
+import type { FlashcardType } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 interface FlashcardProps {
   flashcard: FlashcardType;
@@ -26,9 +25,12 @@ const Flashcard: FC<FlashcardProps> = ({ flashcard }) => {
       role="button"
       tabIndex={0}
       aria-pressed={isFlipped}
-      aria-label={`Flashcard: ${isFlipped ? 'Mostrando resposta' : 'Mostrando pergunta'}. Clique para virar.`}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setIsFlipped(!isFlipped)}
-    >
+      aria-label={`Flashcard: ${
+        isFlipped ? "Mostrando resposta" : "Mostrando pergunta"
+      }. Clique para virar.`}
+      onKeyDown={(e) =>
+        (e.key === "Enter" || e.key === " ") && setIsFlipped(!isFlipped)
+      }>
       <div className="absolute inset-0 w-full h-full backface-hidden">
         <CardContent className="flex flex-col items-center justify-center h-full p-6 text-center">
           <p className="text-sm text-muted-foreground mb-2">Pergunta</p>
@@ -42,15 +44,22 @@ const Flashcard: FC<FlashcardProps> = ({ flashcard }) => {
         </CardContent>
       </div>
       <style jsx global>{`
-        .perspective { perspective: 1000px; }
-        .transform-style-preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
+        .perspective {
+          perspective: 1000px;
+        }
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
       `}</style>
     </Card>
   );
 };
 
 export default Flashcard;
-
-    
