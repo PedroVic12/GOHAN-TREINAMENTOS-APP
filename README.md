@@ -40,7 +40,6 @@ GeminiStudy é uma aplicação web Next.js que utiliza Inteligência Artificial 
 2.  **Instale as dependências:**
     ```bash
     npm install
-    # ou
     yarn install
     ```
 
@@ -63,7 +62,6 @@ GeminiStudy é uma aplicação web Next.js que utiliza Inteligência Artificial 
     -   **Inicie o servidor de desenvolvimento Genkit (em um terminal separado):**
         ```bash
         npm run genkit:dev
-        # ou para observar mudanças nos fluxos de IA
         npm run genkit:watch
         ```
         Isso inicia a UI de desenvolvedor do Genkit, geralmente em `http://localhost:4000`, permitindo que você inspecione e teste seus fluxos de IA.
