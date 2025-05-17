@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { FC } from 'react';
@@ -23,7 +24,6 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
-    // Shuffle options for each question only once when component mounts or questions change
     if (initialQuestions && initialQuestions.length > 0) {
       const shuffledQuestions = initialQuestions.map(q => ({
         ...q,
@@ -35,12 +35,11 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
 
 
   if (!initialQuestions || initialQuestions.length === 0) {
-    return <p className="text-center text-muted-foreground">No quiz questions available.</p>;
+    return <p className="text-center text-muted-foreground">Nenhuma pergunta de quiz disponível.</p>;
   }
   
   if (questions.length === 0 && initialQuestions.length > 0) {
-    // Still loading/shuffling questions
-    return <p className="text-center text-muted-foreground">Loading quiz...</p>;
+    return <p className="text-center text-muted-foreground">Carregando quiz...</p>;
   }
 
 
@@ -64,7 +63,6 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
     setSelectedAnswers({});
     setQuizSubmitted(false);
     setScore(0);
-    // Re-shuffle options if desired, or keep them as is
     const reshuffledQuestions = initialQuestions.map(q => ({
         ...q,
         options: [...q.options].sort(() => Math.random() - 0.5)
@@ -79,12 +77,12 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
     return (
       <Card className="w-full max-w-2xl mx-auto shadow-lg">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl text-primary">Quiz Results</CardTitle>
+          <CardTitle className="text-3xl text-primary">Resultados do Quiz</CardTitle>
           <div className="flex justify-center items-center my-4">
             <Award className="w-16 h-16 text-yellow-500" />
           </div>
           <CardDescription className="text-xl">
-            You scored {score} out of {questions.length}!
+            Você acertou {score} de {questions.length} perguntas!
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -94,14 +92,14 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
                 <li key={index} className="p-4 border rounded-lg">
                   <p className="font-semibold">{index + 1}. {q.question}</p>
                   <p className={`text-sm mt-1 ${selectedAnswers[index] === q.answer ? 'text-green-600' : 'text-red-600'}`}>
-                    Your answer: {selectedAnswers[index] || "Not answered"}
+                    Sua resposta: {selectedAnswers[index] || "Não respondida"}
                     {selectedAnswers[index] === q.answer ? 
                         <CheckCircle className="inline w-4 h-4 ml-1" /> : 
                         <XCircle className="inline w-4 h-4 ml-1" />
                     }
                   </p>
                   {selectedAnswers[index] !== q.answer && (
-                    <p className="text-sm text-green-700 mt-1">Correct answer: {q.answer}</p>
+                    <p className="text-sm text-green-700 mt-1">Resposta correta: {q.answer}</p>
                   )}
                 </li>
               ))}
@@ -109,7 +107,7 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
           </ScrollArea>
         </CardContent>
         <CardFooter>
-          <Button onClick={handleRetakeQuiz} className="w-full">Retake Quiz</Button>
+          <Button onClick={handleRetakeQuiz} className="w-full">Refazer Quiz</Button>
         </CardFooter>
       </Card>
     );
@@ -119,9 +117,9 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
     <Card className="w-full max-w-2xl mx-auto shadow-lg">
       <CardHeader>
         <div className="flex justify-between items-center mb-2">
-            <CardTitle className="text-2xl text-primary">Quiz Time!</CardTitle>
+            <CardTitle className="text-2xl text-primary">Hora do Quiz!</CardTitle>
             <span className="text-sm font-medium text-muted-foreground">
-                Question {currentQuestionIndex + 1} of {questions.length}
+                Pergunta {currentQuestionIndex + 1} de {questions.length}
             </span>
         </div>
         <Progress value={progressValue} className="w-full h-2" />
@@ -146,7 +144,7 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
             </RadioGroup>
           </div>
         ) : (
-            <p>Loading question...</p>
+            <p>Carregando pergunta...</p>
         )}
       </CardContent>
       <CardFooter className="flex justify-between">
@@ -155,15 +153,15 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
           onClick={() => setCurrentQuestionIndex(prev => Math.max(0, prev - 1))} 
           disabled={currentQuestionIndex === 0}
         >
-          Previous
+          Anterior
         </Button>
         {currentQuestionIndex < questions.length - 1 ? (
           <Button onClick={() => setCurrentQuestionIndex(prev => Math.min(questions.length - 1, prev + 1))} disabled={!selectedAnswers[currentQuestionIndex]}>
-            Next
+            Próxima
           </Button>
         ) : (
           <Button onClick={handleSubmitQuiz} disabled={Object.keys(selectedAnswers).length !== questions.length}>
-            Submit Quiz
+            Enviar Quiz
           </Button>
         )}
       </CardFooter>
@@ -172,3 +170,5 @@ const QuizDisplay: FC<QuizDisplayProps> = ({ questions: initialQuestions }) => {
 };
 
 export default QuizDisplay;
+
+    

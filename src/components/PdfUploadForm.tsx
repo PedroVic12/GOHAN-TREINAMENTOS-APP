@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ChangeEvent, FormEvent } from 'react';
@@ -23,15 +24,15 @@ export function PdfUploadForm() {
     const file = e.target.files?.[0];
     if (file) {
       if (file.type !== "application/pdf") {
-        setError("Please upload a valid PDF file.");
+        setError("Por favor, envie um arquivo PDF válido.");
         setPdfFile(null);
-        e.target.value = ""; // Reset file input
+        e.target.value = ""; 
         return;
       }
-      if (file.size > 10 * 1024 * 1024) { // 10MB limit
-        setError("File size should not exceed 10MB.");
+      if (file.size > 10 * 1024 * 1024) { 
+        setError("O tamanho do arquivo não deve exceder 10MB.");
         setPdfFile(null);
-        e.target.value = ""; // Reset file input
+        e.target.value = ""; 
         return;
       }
       setPdfFile(file);
@@ -43,11 +44,11 @@ export function PdfUploadForm() {
     setError(null);
 
     if (!sessionName.trim()) {
-      setError("Session name is required.");
+      setError("O nome da sessão é obrigatório.");
       return;
     }
     if (!pdfFile) {
-      setError("PDF file is required.");
+      setError("O arquivo PDF é obrigatório.");
       return;
     }
 
@@ -63,25 +64,25 @@ export function PdfUploadForm() {
           JSON.stringify({ sessionName, pdfDataUri })
         );
         toast({
-          title: "Processing PDF",
-          description: "Your PDF is being uploaded and processed.",
+          title: "Processando PDF",
+          description: "Seu PDF está sendo enviado e processado.",
         });
         router.push("/insights");
       };
       reader.onerror = () => {
-        setError("Failed to read PDF file.");
+        setError("Falha ao ler o arquivo PDF.");
         toast({
-          title: "Error",
-          description: "Failed to read PDF file. Please try again.",
+          title: "Erro",
+          description: "Falha ao ler o arquivo PDF. Por favor, tente novamente.",
           variant: "destructive",
         });
         setIsLoading(false);
       };
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred during upload.";
-      setError(`Upload failed: ${errorMessage}`);
+      const errorMessage = err instanceof Error ? err.message : "Ocorreu um erro desconhecido durante o envio.";
+      setError(`Falha no envio: ${errorMessage}`);
       toast({
-        title: "Upload Failed",
+        title: "Falha no Envio",
         description: errorMessage,
         variant: "destructive",
       });
@@ -94,45 +95,45 @@ export function PdfUploadForm() {
       <CardHeader>
         <CardTitle className="text-3xl font-bold text-center text-primary">PDF Insights</CardTitle>
         <CardDescription className="text-center">
-          Upload a PDF to generate an AI-powered summary, flashcards, and a quiz.
+          Envie um PDF para gerar um resumo, flashcards e um quiz com IA.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="sessionName" className="text-lg">Session Name</Label>
+            <Label htmlFor="sessionName" className="text-lg">Nome da Sessão</Label>
             <Input
               id="sessionName"
               type="text"
               value={sessionName}
               onChange={(e) => setSessionName(e.target.value)}
-              placeholder="e.g., My Biology Study Session"
+              placeholder="ex: Minha Sessão de Estudo de Biologia"
               required
               className="text-base"
               aria-describedby="sessionNameHelp"
             />
             <p id="sessionNameHelp" className="text-sm text-muted-foreground">
-              Give a name to this analysis session.
+              Dê um nome para esta sessão de análise.
             </p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="pdfFile" className="text-lg">Upload PDF</Label>
+            <Label htmlFor="pdfFile" className="text-lg">Enviar PDF</Label>
             <div className="flex items-center justify-center w-full">
                 <label htmlFor="pdfFile" className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-lg cursor-pointer border-input bg-card hover:bg-secondary transition-colors">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         <UploadCloud className="w-10 h-10 mb-3 text-muted-foreground" />
                         <p className="mb-2 text-sm text-muted-foreground">
-                          <span className="font-semibold">Click to upload</span> or drag and drop
+                          <span className="font-semibold">Clique para enviar</span> ou arraste e solte
                         </p>
-                        <p className="text-xs text-muted-foreground">PDF only (MAX. 10MB)</p>
+                        <p className="text-xs text-muted-foreground">Somente PDF (MAX. 10MB)</p>
                         {pdfFile && <p className="mt-2 text-sm text-accent-foreground">{pdfFile.name}</p>}
                     </div>
                     <Input id="pdfFile" type="file" className="hidden" onChange={handleFileChange} accept="application/pdf" aria-describedby="pdfFileHelp" />
                 </label>
             </div>
              <p id="pdfFileHelp" className="text-sm text-muted-foreground">
-              Select a PDF document to analyze.
+              Selecione um documento PDF para analisar.
             </p>
           </div>
 
@@ -144,10 +145,10 @@ export function PdfUploadForm() {
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                Processing...
+                Processando...
               </>
             ) : (
-              "Generate Insights"
+              "Gerar Insights"
             )}
           </Button>
         </form>
@@ -155,3 +156,5 @@ export function PdfUploadForm() {
     </Card>
   );
 }
+
+    

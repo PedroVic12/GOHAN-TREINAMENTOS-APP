@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { FC } from 'react';
@@ -25,22 +26,21 @@ const Flashcard: FC<FlashcardProps> = ({ flashcard }) => {
       role="button"
       tabIndex={0}
       aria-pressed={isFlipped}
-      aria-label={`Flashcard: ${isFlipped ? 'Showing answer' : 'Showing question'}. Click to flip.`}
+      aria-label={`Flashcard: ${isFlipped ? 'Mostrando resposta' : 'Mostrando pergunta'}. Clique para virar.`}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setIsFlipped(!isFlipped)}
     >
       <div className="absolute inset-0 w-full h-full backface-hidden">
         <CardContent className="flex flex-col items-center justify-center h-full p-6 text-center">
-          <p className="text-sm text-muted-foreground mb-2">Question</p>
+          <p className="text-sm text-muted-foreground mb-2">Pergunta</p>
           <p className="text-lg font-semibold">{flashcard.question}</p>
         </CardContent>
       </div>
       <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
         <CardContent className="flex flex-col items-center justify-center h-full p-6 text-center bg-secondary rounded-lg">
-          <p className="text-sm text-muted-foreground mb-2">Answer</p>
+          <p className="text-sm text-muted-foreground mb-2">Resposta</p>
           <p className="text-lg font-medium">{flashcard.answer}</p>
         </CardContent>
       </div>
-       {/* Add styles for perspective and flip animation */}
       <style jsx global>{`
         .perspective { perspective: 1000px; }
         .transform-style-preserve-3d { transform-style: preserve-3d; }
@@ -52,3 +52,5 @@ const Flashcard: FC<FlashcardProps> = ({ flashcard }) => {
 };
 
 export default Flashcard;
+
+    

@@ -1,3 +1,4 @@
+
 import type { FC } from 'react';
 import Flashcard from "./Flashcard";
 import type { FlashcardType } from '@/lib/types';
@@ -9,7 +10,7 @@ interface FlashcardsDisplayProps {
 
 const FlashcardsDisplay: FC<FlashcardsDisplayProps> = ({ flashcards }) => {
   if (!flashcards || flashcards.length === 0) {
-    return <p className="text-muted-foreground">No flashcards available.</p>;
+    return <p className="text-muted-foreground">Nenhum flashcard disponível.</p>;
   }
 
   return (
@@ -24,3 +25,5 @@ const FlashcardsDisplay: FC<FlashcardsDisplayProps> = ({ flashcards }) => {
 };
 
 export default FlashcardsDisplay;
+
+    

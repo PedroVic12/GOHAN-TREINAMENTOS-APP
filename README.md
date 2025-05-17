@@ -1,4 +1,4 @@
-# PDF Insights
+cx# PDF Insights
 
 PDF Insights is a Next.js web application that leverages Generative AI to provide users with summaries, flashcards, and quizzes generated from their uploaded PDF documents. It's designed with a clean, modern interface using Tailwind CSS and ShadCN UI components.
 

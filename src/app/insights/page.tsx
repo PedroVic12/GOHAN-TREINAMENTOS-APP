@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState, Suspense } from 'react';
@@ -40,105 +41,101 @@ export default function InsightsPage() {
           setSessionName(sName);
           setPdfDataUri(pUri);
         } else {
-          throw new Error("Incomplete data in session storage.");
+          throw new Error("Dados incompletos no armazenamento da sessão.");
         }
       } catch (e) {
-        setError("Failed to load session data. Please try uploading again.");
+        setError("Falha ao carregar os dados da sessão. Por favor, tente enviar novamente.");
         setIsLoading(false);
-        toast({ title: "Error", description: "Invalid session data.", variant: "destructive" });
+        toast({ title: "Erro", description: "Dados da sessão inválidos.", variant: "destructive" });
         router.push('/');
       }
     } else {
-      setError("No session data found. Please upload a PDF first.");
+      setError("Nenhum dado de sessão encontrado. Por favor, envie um PDF primeiro.");
       setIsLoading(false);
-      toast({ title: "Error", description: "No PDF data found.", variant: "destructive" });
+      toast({ title: "Erro", description: "Nenhum dado de PDF encontrado.", variant: "destructive" });
       router.push('/');
     }
   }, [router, toast]);
 
   useEffect(() => {
-    if (pdfDataUri && sessionName && !insightsData && !error) { // only run if data is valid and not already fetched/errored
+    if (pdfDataUri && sessionName && !insightsData && !error) { 
       const fetchInsights = async () => {
         setIsLoading(true);
         setError(null);
-        setCurrentProgress("Starting analysis...");
+        setCurrentProgress("Iniciando análise...");
         try {
-          setCurrentProgress("Generating summary...");
-          toast({ title: "Processing", description: "Generating document summary..." });
+          setCurrentProgress("Gerando resumo...");
+          toast({ title: "Processando", description: "Gerando resumo do documento..." });
           const summaryResult = await generatePdfSummary({ pdfDataUri });
           if (!summaryResult || !summaryResult.summary) {
-            throw new Error("Failed to generate summary or summary is empty.");
+            throw new Error("Falha ao gerar o resumo ou o resumo está vazio.");
           }
-          setCurrentProgress(summaryResult.progress || "Summary generated. Generating flashcards...");
+          setCurrentProgress(summaryResult.progress || "Resumo gerado. Gerando flashcards...");
           
-          toast({ title: "Processing", description: "Generating flashcards..." });
+          toast({ title: "Processando", description: "Gerando flashcards..." });
           const flashcardsResult = await generateFlashcards({ pdfText: summaryResult.summary });
            if (!flashcardsResult || flashcardsResult.length === 0) {
-            console.warn("Flashcard generation resulted in empty or invalid data. Using fallback.");
-            // Fallback might not be ideal but better than erroring out if API is flaky for this part
-            // throw new Error("Failed to generate flashcards or flashcards are empty.");
+            console.warn("A geração de flashcards resultou em dados vazios ou inválidos. Usando fallback.");
           }
-          setCurrentProgress("Flashcards generated. Generating quiz...");
+          setCurrentProgress("Flashcards gerados. Gerando quiz...");
 
-          toast({ title: "Processing", description: "Generating quiz..." });
+          toast({ title: "Processando", description: "Gerando quiz..." });
           const quizResult = await generateQuiz({ pdfContent: summaryResult.summary });
           if (!quizResult || !quizResult.quiz || quizResult.quiz.length === 0) {
-             console.warn("Quiz generation resulted in empty or invalid data. Using fallback.");
-            // throw new Error("Failed to generate quiz or quiz is empty.");
+             console.warn("A geração do quiz resultou em dados vazios ou inválidos. Usando fallback.");
           }
-          setCurrentProgress("All insights generated!");
+          setCurrentProgress("Todos os insights gerados!");
 
           setInsightsData({
             summary: summaryResult.summary,
-            flashcards: flashcardsResult || [], // Ensure it's an array
-            quiz: quizResult?.quiz || [], // Ensure it's an array
+            flashcards: flashcardsResult || [],
+            quiz: quizResult?.quiz || [],
           });
-          toast({ title: "Success!", description: "Insights generated successfully." });
+          toast({ title: "Sucesso!", description: "Insights gerados com sucesso." });
 
         } catch (err) {
-          const errorMessage = err instanceof Error ? err.message : "An unknown error occurred while generating insights.";
+          const errorMessage = err instanceof Error ? err.message : "Ocorreu um erro desconhecido ao gerar os insights.";
           setError(errorMessage);
-          toast({ title: "Generation Failed", description: errorMessage, variant: "destructive" });
-          setCurrentProgress("Error during generation.");
+          toast({ title: "Falha na Geração", description: errorMessage, variant: "destructive" });
+          setCurrentProgress("Erro durante a geração.");
         } finally {
           setIsLoading(false);
         }
       };
       fetchInsights();
     }
-  }, [pdfDataUri, sessionName, toast, insightsData, error]); // Added insightsData and error to dependency array
+  }, [pdfDataUri, sessionName, toast, insightsData, error]);
 
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
         <Alert variant="destructive" className="w-full max-w-md">
           <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Erro</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
         <Button onClick={() => router.push('/')} className="mt-4">
-          <Home className="mr-2 h-4 w-4" /> Go to Homepage
+          <Home className="mr-2 h-4 w-4" /> Ir para a Página Inicial
         </Button>
       </div>
     );
   }
   
-  if (isLoading || (!insightsData && !error)) { // Show loader if isLoading or if insightsData is not yet available and no error
+  if (isLoading || (!insightsData && !error)) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
-        <LoadingSpinner size={64} text={currentProgress || "Loading insights..."} />
-         {sessionName && <p className="mt-4 text-lg font-semibold">Session: {sessionName}</p>}
+        <LoadingSpinner size={64} text={currentProgress || "Carregando insights..."} />
+         {sessionName && <p className="mt-4 text-lg font-semibold">Sessão: {sessionName}</p>}
       </div>
     );
   }
 
   if (!insightsData) {
-     // This case should ideally be covered by isLoading or error states
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
-        <p>No insights data available. This might be an unexpected state.</p>
+        <p>Nenhum insight disponível. Este pode ser um estado inesperado.</p>
          <Button onClick={() => router.push('/')} className="mt-4">
-          <Home className="mr-2 h-4 w-4" /> Go to Homepage
+          <Home className="mr-2 h-4 w-4" /> Ir para a Página Inicial
         </Button>
       </div>
     );
@@ -150,7 +147,7 @@ export default function InsightsPage() {
       <header className="mb-6 py-4 border-b">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-primary">
-            {sessionName ? `Insights for: ${sessionName}` : "PDF Insights"}
+            {sessionName ? `Insights para: ${sessionName}` : "Insights do PDF"}
           </h1>
           <ThemeToggle />
         </div>
@@ -159,7 +156,7 @@ export default function InsightsPage() {
       <Tabs defaultValue="summary" className="w-full flex-grow flex flex-col">
         <TabsList className="mx-auto mb-6 grid w-full max-w-md grid-cols-3">
           <TabsTrigger value="summary" className="py-3 text-base">
-            <BookOpen className="mr-2 h-5 w-5" /> Summary
+            <BookOpen className="mr-2 h-5 w-5" /> Resumo
           </TabsTrigger>
           <TabsTrigger value="flashcards" className="py-3 text-base">
             <Layers className="mr-2 h-5 w-5" /> Flashcards
@@ -171,25 +168,27 @@ export default function InsightsPage() {
 
         <div className="flex-grow">
           <TabsContent value="summary">
-            <Suspense fallback={<LoadingSpinner text="Loading summary..." />}>
+            <Suspense fallback={<LoadingSpinner text="Carregando resumo..." />}>
               <SummaryDisplay summary={insightsData.summary} />
             </Suspense>
           </TabsContent>
           <TabsContent value="flashcards">
-             <Suspense fallback={<LoadingSpinner text="Loading flashcards..." />}>
+             <Suspense fallback={<LoadingSpinner text="Carregando flashcards..." />}>
               <FlashcardsDisplay flashcards={insightsData.flashcards} />
             </Suspense>
           </TabsContent>
           <TabsContent value="quiz">
-            <Suspense fallback={<LoadingSpinner text="Loading quiz..." />}>
+            <Suspense fallback={<LoadingSpinner text="Carregando quiz..." />}>
               <QuizDisplay questions={insightsData.quiz} />
             </Suspense>
           </TabsContent>
         </div>
       </Tabs>
        <footer className="text-center py-4 mt-8 border-t text-sm text-muted-foreground">
-        PDF Insights - Powered by AI
+        PDF Insights - Desenvolvido com IA
       </footer>
     </div>
   );
 }
+
+    

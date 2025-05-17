@@ -1,3 +1,4 @@
+
 import type { FC } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -8,16 +9,15 @@ interface SummaryDisplayProps {
 
 const SummaryDisplay: FC<SummaryDisplayProps> = ({ summary }) => {
   if (!summary) {
-    return <p className="text-muted-foreground">No summary available.</p>;
+    return <p className="text-muted-foreground">Nenhum resumo disponível.</p>;
   }
 
-  // Simple paragraph splitting for basic formatting
   const paragraphs = summary.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length > 0);
 
   return (
     <Card className="shadow-lg">
       <CardHeader>
-        <CardTitle className="text-2xl text-primary">Document Summary</CardTitle>
+        <CardTitle className="text-2xl text-primary">Resumo do Documento</CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-[calc(100vh-20rem)] md:h-[calc(100vh-22rem)]">
@@ -33,3 +33,5 @@ const SummaryDisplay: FC<SummaryDisplayProps> = ({ summary }) => {
 };
 
 export default SummaryDisplay;
+
+    
