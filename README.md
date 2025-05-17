@@ -2,7 +2,7 @@
 
 **LearnLite** é uma aplicação web construída com Next.js que utiliza Inteligência Artificial Generativa para oferecer aos usuários resumos, flashcards e quizzes gerados a partir de documentos PDF enviados. A interface é limpa e moderna, desenvolvida com Tailwind CSS e componentes da ShadCN UI.
 
-<p align="center">Acesse o WebSite: https://gemini-study.vercel.app/insights</p>
+### Acesse o LearnLite: https://gemini-study.vercel.app/
 
 ## Versão Desktop
 
