@@ -1,4 +1,4 @@
-cx# GeminiStudy
+# GeminiStudy
 
 GeminiStudy é uma aplicação web Next.js que utiliza Inteligência Artificial Generativa para fornecer aos usuários resumos, flashcards e quizzes gerados a partir de seus documentos PDF enviados. Foi projetada com uma interface limpa e moderna usando Tailwind CSS e componentes ShadCN UI.
 
@@ -44,13 +44,12 @@ GeminiStudy é uma aplicação web Next.js que utiliza Inteligência Artificial 
     yarn install
     ```
 
-3.  **Configure Variáveis de Ambiente (se aplicável):**
-    Se a integração com IA exigir chaves de API (ex: para Google Gemini), crie um arquivo `.env.local` na raiz do seu projeto e adicione as chaves necessárias. Consulte a documentação do Genkit e Google AI para nomes de variáveis específicos.
-    Exemplo:
+3.  **Configure Variáveis de Ambiente:**
+    Para a integração com a IA (Google Gemini), crie um arquivo `.env.local` na raiz do seu projeto e adicione sua chave de API:
     ```
-    GOOGLE_API_KEY=your_google_api_key_here
+    GOOGLE_API_KEY=sua_google_api_key_aqui
     ```
-    A configuração do Genkit (`src/ai/dev.ts`) usa `dotenv` para carregá-las.
+    A configuração do Genkit (`src/ai/dev.ts`) usa `dotenv` para carregar esta variável em ambiente de desenvolvimento local.
 
 4.  **Rode os servidores de desenvolvimento:**
     A aplicação usa dois servidores de desenvolvimento: um para o app Next.js e um para os fluxos Genkit.
@@ -83,20 +82,18 @@ Fazer o deploy do GeminiStudy no Vercel é direto:
     -   Selecione seu provedor Git e importe o repositório contendo seu projeto GeminiStudy.
 4.  **Configure as Configurações do Projeto:**
     -   O Vercel deve detectar automaticamente que é um projeto Next.js.
-    -   **Configurações de Build & Desenvolvimento:** Geralmente, os padrões são suficientes.
-        -   Framework Preset: Next.js
-        -   Build Command: `next build` (ou `npm run build`)
-        -   Output Directory: `.next`
-        -   Install Command: `npm install` (ou `yarn install`)
-    -   **Variáveis de Ambiente:** Adicione quaisquer variáveis de ambiente necessárias para os serviços de IA (como `GOOGLE_API_KEY`) nas configurações do projeto no Vercel. Vá para o seu projeto no Vercel -> Settings -> Environment Variables.
+    -   **Configurações de Build & Desenvolvimento:**
+        -   Framework Preset: Next.js (deve ser detectado automaticamente).
+        -   Build Command: `npm run build` (ou `yarn build` se você usar yarn).
+        -   Output Directory: `.next` (padrão do Next.js).
+        -   Install Command: `npm install` (ou `yarn install`).
+    -   **Variáveis de Ambiente:** Adicione a variável `GOOGLE_API_KEY` nas configurações do projeto no Vercel. Vá para o seu projeto no Vercel -> Settings -> Environment Variables.
 5.  **Deploy.**
-    O Vercel fará o build e o deploy da sua aplicação. Uma vez concluído, você receberá uma URL única para o seu site ao vivo.
+    O Vercel fará o build e o deploy da sua aplicação. Uma vez concluído, você receberá uma URL única para o seu site ao vivo. O arquivo `vercel.json` incluído no projeto ajuda a garantir que a Vercel use as configurações corretas para um projeto Next.js.
 
 **Nota Importante para Fluxos de IA Genkit no Vercel:**
-Ao fazer deploy de fluxos Genkit, especialmente aqueles que usam APIs externas como Google Gemini, certifique-se de que:
-- Suas chaves de API estão corretamente configuradas como variáveis de ambiente no Vercel.
-- Os modelos e serviços que você está usando são acessíveis pelos servidores do Vercel (ex: sem restrições de IP que bloqueariam o Vercel).
-- Considerações de deploy em produção do Genkit são seguidas se você for além de simples server actions dentro do Next.js. Para este projeto, as server actions devem funcionar bem com o deploy Next.js no Vercel.
+- Suas chaves de API (`GOOGLE_API_KEY`) devem estar corretamente configuradas como variáveis de ambiente no Vercel.
+- Os fluxos Genkit são usados como Server Actions dentro do Next.js, o que é compatível com o ambiente serverless da Vercel.
 
 ## Otimizações Futuras
 
