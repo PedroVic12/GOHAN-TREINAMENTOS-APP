@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { FaLinkedin } from "react-icons/fa";
 import FlashcardsDisplay from "@/components/FlashcardsDisplay";
 import { FaHistory } from "react-icons/fa"; // Import a history icon
-import QuizDisplay from "@/components/QuizDisplay";
+import QuizDisplay from "@/components/QuizDisplay"; 
 import HistorySidebar from "@/components/HistorySidebar";
 import { useHistoryStorage } from "@/hooks/useHistoryStorage";
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component

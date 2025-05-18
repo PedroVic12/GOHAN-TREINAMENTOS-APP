@@ -3,21 +3,30 @@ import { Session } from '../lib/historyTypes';
 import { useHistoryStorage } from '../hooks/useHistoryStorage';
 
 interface HistorySidebarProps {
+interface HistorySidebarProps {
   onSessionSelect: (sessionId: string) => void;
 }
 
 const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect }) => {
   const { sessions } = useHistoryStorage();
 
-  const handleSessionClick = (session: Session) => {
     // TODO: Implement logic to load and display the clicked session data
+  const handleSessionClick = (session: Session) => {
     console.log('Session clicked:', session.id, session.name);
     onSessionSelect(session.id);
   };
-  
+
   return (
-    <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transition-transform ease-in-out duration-300 z-20 transform -translate-x-full data-[state=open]:translate-x-0">
-      <h2 className="text-lg font-semibold mb-4">History</h2>
+    <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20 translate-x-0">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-semibold">History</h2>
+        {/* Close button - Assuming you have a way to handle closing the sidebar */}
+        {/* This button will need an onClick handler passed from the parent component */}
+        <button className="text-gray-500 hover:text-gray-700">
+          {/* Replace with your preferred close icon (e.g., X) */}
+          X
+        </button>
+      </div>
       {sessions.length === 0 ? (
         <p className="text-sm text-gray-500">No sessions saved yet.</p>
       ) : (
@@ -37,4 +46,5 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect }) => {
   );
 };
 
+export type { HistorySidebarProps };
 export default HistorySidebar;
