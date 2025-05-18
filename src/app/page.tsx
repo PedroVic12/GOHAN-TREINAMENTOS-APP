@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react';
 import { PdfUploadForm } from "@/components/PdfUploadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FaLinkedin } from "react-icons/fa";
+import FlashcardsDisplay from "@/components/FlashcardsDisplay";
+import QuizDisplay from "@/components/QuizDisplay";
 import HistorySidebar from "@/components/HistorySidebar";
 import { useHistoryStorage } from "@/hooks/useHistoryStorage";
+import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 import { Session } from "@/lib/historyTypes"; // Import the Session type
 
 export default function HomePage() {
@@ -13,6 +16,7 @@ export default function HomePage() {
   const [currentSession, setCurrentSession] = useState<Session | null>(null);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null); // State to track selected session ID
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to control sidebar visibility
   // Effect to load session data when currentSessionId changes
   useEffect(() => {
     if (currentSessionId) { // Only fetch if an ID is selected
@@ -23,7 +27,11 @@ export default function HomePage() {
 
   return (
     <div className="flex min-h-screen"> {/* This is the single root element returned */}
-      <HistorySidebar onSessionSelect={setCurrentSessionId} /> {/* Pass setCurrentSessionId directly */}
+      {isSidebarOpen && <HistorySidebar onSessionSelect={setCurrentSessionId} />}
+      {/* Button to toggle sidebar visibility */}
+      <Button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="absolute top-4 left-4 z-10">
+        {isSidebarOpen ? 'Fechar Histórico' : 'Abrir Histórico'}
+      </Button>
       <main className="flex flex-col items-center justify-center flex-grow p-4 bg-gradient-to-br from-background to-secondary/30">
         <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
           <ThemeToggle />
@@ -41,12 +49,11 @@ export default function HomePage() {
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2">Flashcards</h2>
               {/* <FlashcardsDisplay flashcards={currentSession.flashcards} /> */}
-              <p>Flashcard display goes here.</p>
+              <FlashcardsDisplay flashcards={currentSession.flashcards} />
             </div>
             <div>
                <h2 className="text-xl font-semibold mb-2">Quiz</h2>
-               {/* <QuizDisplay quiz={currentSession.quiz} /> */}
-               <p>Quiz display goes here.</p>
+               <QuizDisplay quiz={currentSession.quiz} />
             </div>
           </div>
         ) : (
