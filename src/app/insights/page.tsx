@@ -12,6 +12,7 @@ import SummaryDisplay from "@/components/SummaryDisplay";
 import FlashcardsDisplay from "@/components/FlashcardsDisplay";
 import QuizDisplay from "@/components/QuizDisplay";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useToast } from "@/hooks/use-toast";
 import { useHistoryStorage } from "@/hooks/useHistoryStorage";
 import { Session } from "@/lib/historyTypes"; // Import the Session type
 import { generatePdfSummary } from "@/ai/flows/pdf-summary";
@@ -30,7 +31,6 @@ import {
   Home,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
 export default function InsightsPage() {
   const router = useRouter();
   const { toast } = useToast();
