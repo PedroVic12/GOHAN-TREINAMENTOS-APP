@@ -129,7 +129,11 @@ export default function InsightsPage() {
           setInsightsData({
             summary: summaryResult.summary,
             flashcards: flashcardsResult || [],
-            quiz: quizResult?.quiz || [],
+ quiz: quizResult?.quiz.map((q: any) => ({
+ question: q.question,
+ options: q.options,
+ correctAnswer: q.answer,
+ })) || [],
           });
           toast({
             title: "Sucesso!",
@@ -144,7 +148,11 @@ export default function InsightsPage() {
             createdAt: new Date().toISOString(), // Current date in ISO format
             summary: summaryResult.summary,
             flashcards: flashcardsResult || [],
-            quiz: quizResult?.quiz || [],
+ quiz: quizResult?.quiz.map((q: any) => ({
+ question: q.question,
+ options: q.options,
+ correctAnswer: q.answer,
+ })) || [],
           };
           saveSession(newSession);
         } catch (err) {
