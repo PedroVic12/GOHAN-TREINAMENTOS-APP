@@ -21,6 +21,7 @@ import { generateQuiz } from "@/ai/flows/quiz-generation";
 import type {
   FlashcardType,
  PdfInsightsData,
+ QuizQuestionType,
 } from "@/lib/types";
 import {
   BookOpen,
@@ -128,9 +129,9 @@ export default function InsightsPage() {
           setInsightsData({
             summary: summaryResult.summary,
             flashcards: flashcardsResult || [],
- quiz: quizResult?.quiz.map((q: any) => ({
+ quiz: quizResult?.quiz.map((q: QuizQuestionType) => ({
  question: q.question,
- options: q.options, // Assuming options is an array or similar structure
+ options: q.options,
  answer: q.answer, // Assuming q.answer holds the correct answer value
  })) || [],
           });
@@ -147,9 +148,9 @@ export default function InsightsPage() {
             createdAt: new Date().toISOString(), // Current date in ISO format
             summary: summaryResult.summary,
             flashcards: flashcardsResult || [],
- quiz: quizResult?.quiz.map((q: any) => ({
+ quiz: quizResult?.quiz.map((q: QuizQuestionType) => ({
  question: q.question,
- options: q.options, // Assuming options is an array or similar structure
+ options: q.options,
  answer: q.answer, // Assuming q.answer holds the correct answer value
  })) || [],
           };
