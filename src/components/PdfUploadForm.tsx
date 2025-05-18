@@ -104,7 +104,7 @@ export function PdfUploadForm() {
   return (
     <Card className="w-full max-w-lg shadow-xl">
       <CardHeader className="p-5">
-        <CardTitle className="flex flex-row justify-center text-3xl font-bold text-center text-primary gap-2">
+        <CardTitle className="flex flex-row justify-center text-3xl font-bold text-center text-primary my-2.5 gap-2">
           <Image src={Logo} alt="Logo" className="w-10" />
           LearnLite
         </CardTitle>

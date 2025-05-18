@@ -240,7 +240,7 @@ export default function InsightsPage() {
           <FaHome size={25} />
         </a>
         <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
-          <FaLinkedin size={25} color="#62626e" />
+          <FaLinkedin size={25} />
         </a>
       </footer>
     </div>
