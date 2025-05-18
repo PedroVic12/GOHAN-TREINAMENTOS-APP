@@ -130,8 +130,8 @@ export default function InsightsPage() {
             flashcards: flashcardsResult || [],
  quiz: quizResult?.quiz.map((q: any) => ({
  question: q.question,
- options: q.options,
- correctAnswer: q.answer,
+ options: q.options, // Assuming options is an array or similar structure
+ answer: q.answer, // Assuming q.answer holds the correct answer value
  })) || [],
           });
           toast({
@@ -149,8 +149,8 @@ export default function InsightsPage() {
             flashcards: flashcardsResult || [],
  quiz: quizResult?.quiz.map((q: any) => ({
  question: q.question,
- options: q.options,
- correctAnswer: q.answer,
+ options: q.options, // Assuming options is an array or similar structure
+ answer: q.answer, // Assuming q.answer holds the correct answer value
  })) || [],
           };
           saveSession(newSession);
