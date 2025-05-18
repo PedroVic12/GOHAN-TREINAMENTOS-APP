@@ -23,7 +23,7 @@ export default function HomePage() {
 
   return (
     <div className="flex min-h-screen"> {/* This is the single root element returned */}
-      <HistorySidebar onSelectSession={setCurrentSessionId} /> {/* Pass setCurrentSessionId directly */}
+      <HistorySidebar onSessionSelect={setCurrentSessionId} /> {/* Pass setCurrentSessionId directly */}
       <main className="flex flex-col items-center justify-center flex-grow p-4 bg-gradient-to-br from-background to-secondary/30">
         <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
           <ThemeToggle />
