@@ -11,7 +11,7 @@ import { Session } from "@/lib/historyTypes"; // Import the Session type
 export default function HomePage() {
   const { getSessionById } = useHistoryStorage(); // Only need getSessionById here
   const [currentSession, setCurrentSession] = useState<Session | null>(null);
-  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null); // Keep this to track selected ID
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null); // State to track selected session ID
 
   // Effect to load session data when currentSessionId changes
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function HomePage() {
       const session = getSessionById(currentSessionId);
       setCurrentSession(session || null); // Set session data, or null if not found
     }
+  }, [currentSessionId, getSessionById]); // Add dependencies
 
   return (
     <div className="flex min-h-screen">
