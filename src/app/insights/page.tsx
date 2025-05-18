@@ -21,7 +21,7 @@ import { generateQuiz } from "@/ai/flows/quiz-generation";
 import type {
   FlashcardType,
   QuizQuestionType,
-  PdfInsightsData,
+ PdfInsightsData,
 } from "@/lib/types";
 import {
   BookOpen,
