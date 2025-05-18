@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Session } from './historyTypes'; // Assuming historyTypes.ts is in the same directory or correctly imported
+import { Session } from '../lib/historyTypes'; // Assuming historyTypes.ts is in the same directory or correctly imported
 
 const STORAGE_KEY = 'learnlite_sessions';
 
