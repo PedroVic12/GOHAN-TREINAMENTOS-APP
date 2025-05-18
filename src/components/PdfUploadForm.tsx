@@ -151,7 +151,8 @@ export function PdfUploadForm() {
                     Somente PDF (MAX. 10MB)
                   </p>
                   {pdfFile && (
-                    <p className="mt-2 text-sm text-accent-foreground">
+                    <p
+                      className={`mt-2 text-sm text-accent-foreground font-semibold text-gray-400`}>
                       {pdfFile.name}
                     </p>
                   )}

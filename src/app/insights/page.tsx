@@ -1,5 +1,7 @@
 "use client";
 
+import { FaHome } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -191,13 +193,11 @@ export default function InsightsPage() {
   }
 
   return (
-    <div className="container mx-auto p-4 min-h-screen flex flex-col">
+    <div className="container mx-auto p-4 min-h-screen flex flex-col relative">
       <header className="mb-6 py-4 border-b">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-primary">
-            {sessionName
-              ? `LearnLite para: ${sessionName}`
-              : "LearnLite Insights"}
+            {sessionName ? `Sessão: ${sessionName}` : "LearnLite Insights"}
           </h1>
           <ThemeToggle />
         </div>
@@ -235,11 +235,12 @@ export default function InsightsPage() {
           </TabsContent>
         </div>
       </Tabs>
-      <footer className="flex flex-row justify-between py-4 mt-8 border-t text-sm text-muted-foreground">
-        <p>LearnLite @2025</p>
-        <a href="/">Home</a>
+      <footer className="flex flex-row justify-center gap-10 py-4 mt-20 border-t text-sm text-muted-foreground items-center font-semibold">
+        <a href="/" className="text-2xl">
+          <FaHome size={25} />
+        </a>
         <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
-          Desenvolvedor
+          <FaLinkedin size={25} color="#62626e" />
         </a>
       </footer>
     </div>
