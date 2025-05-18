@@ -5,6 +5,7 @@ import { PdfUploadForm } from "@/components/PdfUploadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FaLinkedin } from "react-icons/fa";
 import FlashcardsDisplay from "@/components/FlashcardsDisplay";
+import { FaHistory } from "react-icons/fa"; // Import a history icon
 import QuizDisplay from "@/components/QuizDisplay";
 import HistorySidebar from "@/components/HistorySidebar";
 import { useHistoryStorage } from "@/hooks/useHistoryStorage";
@@ -29,9 +30,11 @@ export default function HomePage() {
     <div className="flex min-h-screen"> {/* This is the single root element returned */}
       {isSidebarOpen && <HistorySidebar onSessionSelect={setCurrentSessionId} />}
       {/* Button to toggle sidebar visibility */}
-      <Button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="absolute top-4 left-4 z-10">
-        {isSidebarOpen ? 'Fechar Histórico' : 'Abrir Histórico'}
-      </Button>
+      {!isSidebarOpen && ( // Only show the button when the sidebar is closed
+        <Button onClick={() => setIsSidebarOpen(true)} className="absolute top-4 left-4 z-10">
+          <FaHistory className="h-5 w-5" /> {/* Use the history icon */}
+        </Button>
+      )}
       <main className="flex flex-col items-center justify-center flex-grow p-4 bg-gradient-to-br from-background to-secondary/30">
         <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
           <ThemeToggle />

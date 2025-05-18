@@ -16,7 +16,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect }) => {
   };
   
   return (
-    <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transition-transform transform-none ease-in-out duration-300 z-20">
+    <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transition-transform ease-in-out duration-300 z-20 transform -translate-x-full data-[state=open]:translate-x-0">
       <h2 className="text-lg font-semibold mb-4">History</h2>
       {sessions.length === 0 ? (
         <p className="text-sm text-gray-500">No sessions saved yet.</p>
