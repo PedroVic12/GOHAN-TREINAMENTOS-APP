@@ -6,7 +6,7 @@ export interface Flashcard {
 export interface QuizQuestion {
   question: string;
   options: string[]; // Array of possible answers
-  correctAnswer: string;
+  answer: string;
 }
 
 export interface Session {
