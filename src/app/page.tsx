@@ -1,12 +1,72 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import { PdfUploadForm } from "@/components/PdfUploadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FaLinkedin } from "react-icons/fa";
+import HistorySidebar from "@/components/HistorySidebar";
+import { useHistoryStorage } from "@/hooks/useHistoryStorage";
+import { Session } from "@/lib/historyTypes"; // Import the Session type
 
 export default function HomePage() {
+  const { sessions, getSessionById, isInitialized } = useHistoryStorage();
+  const [currentSession, setCurrentSession] = useState<Session | null>(null);
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null); // Keep this to track selected ID
+
+  // Effect to load session data when currentSessionId changes
+  useEffect(() => {
+    if (currentSessionId) {
+      const session = getSessionById(currentSessionId);
+      setCurrentSession(session || null); // Set session data, or null if not found
+    } else {
+      setCurrentSession(null); // Clear session data if no ID is selected
+    }
+  }, [currentSessionId, getSessionById]); // Depend on currentSessionId and getSessionById
+
+
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-background to-secondary/30">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
+    <div className="flex min-h-screen">
+      <HistorySidebar onSelectSession={setCurrentSessionId} /> {/* Pass setCurrentSessionId directly */}
+      <main className="flex flex-col items-center justify-center flex-grow p-4 bg-gradient-to-br from-background to-secondary/30">
+        <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
+          <ThemeToggle />
+        </div>
+        {/* Add content area to display currentSession data */}
+        {showUploadForm ? (
+          <PdfUploadForm />
+        ) : currentSessionId && currentSession ? (
+          // Display the summary, flashcards, and quiz from currentSession
+          <div className="w-full max-w-2xl">
+            <h1 className="text-2xl font-bold mb-4">{currentSession.name}</h1>
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-2">Resumo</h2>
+              <p>{currentSession.summary}</p>
+            </div>
+            {/* Placeholder for FlashcardsDisplay and QuizDisplay */}
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-2">Flashcards</h2>
+              {/* <FlashcardsDisplay flashcards={currentSession.flashcards} /> */}
+              <p>Flashcard display goes here.</p>
+            </div>
+            <div>
+               <h2 className="text-xl font-semibold mb-2">Quiz</h2>
+               {/* <QuizDisplay quiz={currentSession.quiz} /> */}
+               <p>Quiz display goes here.</p>
+            </div>
+          </div>
+        ) : (
+          <p>Select a session from the sidebar or upload a PDF.</p>
+        )}
+        <footer className="flex flex-col items-center py-4 mt-8 text-sm text-muted-foreground gap-2">
+          <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
+            <FaLinkedin size={35} color="#6666FF" />
+          </a>
+          Developed by Caio Souza
+        </footer>
+      </main>
+    </div>
+  );
+}
       </div>
       <PdfUploadForm />
       <footer className="flex flex-col items-center py-4 mt-8 text-sm text-muted-foreground gap-2">

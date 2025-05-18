@@ -12,6 +12,8 @@ import SummaryDisplay from "@/components/SummaryDisplay";
 import FlashcardsDisplay from "@/components/FlashcardsDisplay";
 import QuizDisplay from "@/components/QuizDisplay";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useHistoryStorage } from "@/hooks/useHistoryStorage";
+import { Session } from "@/lib/historyTypes"; // Import the Session type
 import { generatePdfSummary } from "@/ai/flows/pdf-summary";
 import { generateFlashcards } from "@/ai/flows/flashcard-generation";
 import { generateQuiz } from "@/ai/flows/quiz-generation";
@@ -20,7 +22,6 @@ import type {
   QuizQuestionType,
   PdfInsightsData,
 } from "@/lib/types";
-import { useToast } from "@/hooks/use-toast";
 import {
   BookOpen,
   Layers,
@@ -33,6 +34,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export default function InsightsPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { toast } = useToast();
 
   const [sessionName, setSessionName] = useState<string | null>(null);
   const [pdfDataUri, setPdfDataUri] = useState<string | null>(null);
@@ -42,6 +44,8 @@ export default function InsightsPage() {
   );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { saveSession } = useHistoryStorage(); // Get saveSession from the hook
+
   const [currentProgress, setCurrentProgress] = useState<string>("");
 
   useEffect(() => {
@@ -132,6 +136,18 @@ export default function InsightsPage() {
             title: "Sucesso!",
             description: "Insights gerados com sucesso.",
           });
+
+          // Save the session to localStorage
+          const newSession: Session = {
+            id: crypto.randomUUID(), // Generate a unique ID
+            name: sessionName,
+            originalFileName: undefined, // You can add the original file name here if available
+            createdAt: new Date().toISOString(), // Current date in ISO format
+            summary: summaryResult.summary,
+            flashcards: flashcardsResult || [],
+            quiz: quizResult?.quiz || [],
+          };
+          saveSession(newSession);
         } catch (err) {
           const errorMessage =
             err instanceof Error
