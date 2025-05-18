@@ -20,7 +20,6 @@ import { generateFlashcards } from "@/ai/flows/flashcard-generation";
 import { generateQuiz } from "@/ai/flows/quiz-generation";
 import type {
   FlashcardType,
-  QuizQuestionType,
  PdfInsightsData,
 } from "@/lib/types";
 import {
