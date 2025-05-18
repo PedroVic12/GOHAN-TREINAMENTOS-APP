@@ -1,6 +1,6 @@
 import React from 'react';
-import useHistoryStorage from '../hooks/useHistoryStorage';
 import { Session } from '../lib/historyTypes';
+import { useHistoryStorage } from '../hooks/useHistoryStorage';
 
 const HistorySidebar: React.FC = () => {
   const { sessions } = useHistoryStorage();
