@@ -53,7 +53,7 @@ export default function HomePage() {
             </div>
             <div>
                <h2 className="text-xl font-semibold mb-2">Quiz</h2>
-               <QuizDisplay quiz={currentSession.quiz} />
+               <QuizDisplay questions={currentSession.quiz} />
             </div>
           </div>
         ) : (
