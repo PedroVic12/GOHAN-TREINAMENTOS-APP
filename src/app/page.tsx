@@ -9,20 +9,16 @@ import { useHistoryStorage } from "@/hooks/useHistoryStorage";
 import { Session } from "@/lib/historyTypes"; // Import the Session type
 
 export default function HomePage() {
-  const { sessions, getSessionById, isInitialized } = useHistoryStorage();
+  const { getSessionById } = useHistoryStorage(); // Only need getSessionById here
   const [currentSession, setCurrentSession] = useState<Session | null>(null);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null); // Keep this to track selected ID
 
   // Effect to load session data when currentSessionId changes
   useEffect(() => {
-    if (currentSessionId) {
+    if (currentSessionId) { // Only fetch if an ID is selected
       const session = getSessionById(currentSessionId);
       setCurrentSession(session || null); // Set session data, or null if not found
-    } else {
-      setCurrentSession(null); // Clear session data if no ID is selected
     }
-  }, [currentSessionId, getSessionById]); // Depend on currentSessionId and getSessionById
-
 
   return (
     <div className="flex min-h-screen">
@@ -32,9 +28,7 @@ export default function HomePage() {
           <ThemeToggle />
         </div>
         {/* Add content area to display currentSession data */}
-        {showUploadForm ? (
-          <PdfUploadForm />
-        ) : currentSessionId && currentSession ? (
+        {currentSessionId && currentSession ? ( // Display session data if a session is selected and loaded
           // Display the summary, flashcards, and quiz from currentSession
           <div className="w-full max-w-2xl">
             <h1 className="text-2xl font-bold mb-4">{currentSession.name}</h1>
@@ -55,7 +49,8 @@ export default function HomePage() {
             </div>
           </div>
         ) : (
-          <p>Select a session from the sidebar or upload a PDF.</p>
+          // Display upload form if no session is selected
+          <PdfUploadForm />
         )}
         <footer className="flex flex-col items-center py-4 mt-8 text-sm text-muted-foreground gap-2">
           <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
@@ -64,17 +59,6 @@ export default function HomePage() {
           Developed by Caio Souza
         </footer>
       </main>
-    </div>
-  );
-}
-      </div>
-      <PdfUploadForm />
-      <footer className="flex flex-col items-center py-4 mt-8 text-sm text-muted-foreground gap-2">
-        <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
-          <FaLinkedin size={35} color="#6666FF" />
-        </a>
-        Developed by Caio Souza
-      </footer>
-    </main>
+    </div> // This is the single root element returned
   );
 }

@@ -34,7 +34,6 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export default function InsightsPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const { toast } = useToast();
 
   const [sessionName, setSessionName] = useState<string | null>(null);
   const [pdfDataUri, setPdfDataUri] = useState<string | null>(null);
