@@ -9,7 +9,7 @@ export interface QuizQuestion {
   correctAnswer: string; // The correct answer string
 }
 
-export interface PdfAnalysisSession {
+export interface Session {
   id: string;
   name: string;
   originalFileName?: string;
@@ -19,4 +19,4 @@ export interface PdfAnalysisSession {
   quiz: QuizQuestion[];
 }
 
-export type PdfAnalysisSessions = PdfAnalysisSession[];
+export type PdfAnalysisSessions = Session[];
