@@ -50,8 +50,5 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isSide
   );
 };
 
-export default HistorySidebar;
-
-
 export type { HistorySidebarProps };
 export default HistorySidebar;
