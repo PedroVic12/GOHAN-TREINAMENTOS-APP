@@ -33,7 +33,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isOpen
       {sessions.length === 0 ? (
         <p className="text-sm text-gray-500">Nenhuma sessão salva ainda.</p>
       ) : (
-        <ul>
+        <ul className="space-y-2">
           {sessions.map((session) => (
             <li
               key={session.id}
@@ -41,7 +41,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isOpen
               onClick={() => handleSessionClick(session)}
             >
               {session.name || session.originalFileName || `Session ${session.id.substring(0, 6)}...`}
-            </li>
+            </li>            
           ))}
         </ul>
       )}
