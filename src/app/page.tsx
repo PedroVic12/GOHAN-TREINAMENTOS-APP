@@ -5,6 +5,7 @@ import { PdfUploadForm } from "@/components/PdfUploadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FaLinkedin } from "react-icons/fa";
 import FlashcardsDisplay from "@/components/FlashcardsDisplay";
+import { FaArrowLeft } from "react-icons/fa"; // Import back arrow icon
 import { FaHistory } from "react-icons/fa"; // Import a history icon
 import QuizDisplay from "@/components/QuizDisplay"; 
 import HistorySidebar from "@/components/HistorySidebar";
@@ -39,6 +40,16 @@ export default function HomePage() {
         <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
           <ThemeToggle />
         </div>
+        {currentSessionId && ( // Show back button only when a session is active
+ <Button
+ onClick={() => {
+ setCurrentSessionId(null);
+ setCurrentSession(null);
+            }}
+            className="absolute top-4 left-20 z-10"> {/* Position to the right of history button */}
+ <FaArrowLeft className="h-5 w-5" /> {/* Use back arrow icon */}
+ </Button>
+        )}
         {/* Add content area to display currentSession data */}
         {currentSessionId && currentSession ? ( // Display session data if a session is selected and loaded
           // Display the summary, flashcards, and quiz from currentSession
