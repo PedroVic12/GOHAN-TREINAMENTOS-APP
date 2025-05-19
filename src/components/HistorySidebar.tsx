@@ -16,7 +16,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isOpen
   };
 
   return (
-    <div className={
+    <div className={`opacity-100 ` +
       `fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20` +
       (isOpen ? ' translate-x-0' : ' -translate-x-full') +
       (isOpen ? ' block' : ' hidden')
