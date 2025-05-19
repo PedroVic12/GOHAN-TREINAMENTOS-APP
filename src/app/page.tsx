@@ -28,7 +28,7 @@ export default function HomePage() {
 
   return (
     <div className="flex min-h-screen"> {/* This is the single root element returned */}
-      {isSidebarOpen && <HistorySidebar onSessionSelect={setCurrentSessionId} />}
+      <HistorySidebar onSessionSelect={setCurrentSessionId} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       {/* Button to toggle sidebar visibility */}
       {!isSidebarOpen && ( // Only show the button when the sidebar is closed
         <Button onClick={() => setIsSidebarOpen(true)} className="absolute top-4 left-4 z-10">

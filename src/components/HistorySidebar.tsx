@@ -4,6 +4,8 @@ import { useHistoryStorage } from '../hooks/useHistoryStorage';
 
 interface HistorySidebarProps {
   onSessionSelect: (sessionId: string) => void;
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
 }
 
 const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect }) => {
@@ -16,12 +18,12 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20 translate-x-0">
+    <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">History</h2>
-        {/* Close button - Assuming you have a way to handle closing the sidebar */}
-        {/* This button will need an onClick handler passed from the parent component */}
-        <button className="text-gray-500 hover:text-gray-700">
+        <h2 className="text-lg font-semibold">Histórico</h2>
+        {/* Close button */}
+        {isSidebarOpen && (
+        <button className="text-gray-500 hover:text-gray-700" onClick={() => setIsSidebarOpen(false)}>
           {/* Replace with your preferred close icon (e.g., X) */}
           X
         </button>
