@@ -31,7 +31,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isOpen
       </div>
 
       {sessions.length === 0 ? (
-        <p className="text-sm text-gray-500">No sessions saved yet.</p>
+        <p className="text-sm text-gray-500">Nenhuma sessão salva ainda.</p>
       ) : (
         <ul>
           {sessions.map((session) => (
