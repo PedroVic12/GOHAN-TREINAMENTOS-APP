@@ -53,7 +53,7 @@ export default function HomePage() {
         {/* Add content area to display currentSession data */}
         {currentSessionId && currentSession ? ( // Display session data if a session is selected and loaded
           // Display the summary, flashcards, and quiz from currentSession
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-5xl">
             <h1 className="text-2xl font-bold mb-4">{currentSession.name}</h1>
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2">Resumo</h2>
