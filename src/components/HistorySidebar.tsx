@@ -3,7 +3,6 @@ import { Session } from '../lib/historyTypes';
 import { useHistoryStorage } from '../hooks/useHistoryStorage';
 
 interface HistorySidebarProps {
-interface HistorySidebarProps {
   onSessionSelect: (sessionId: string) => void;
 }
 
