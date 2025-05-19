@@ -18,7 +18,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isSide
   };
 
   return (
-    <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} ${isSidebarOpen ? 'block' : 'hidden'}`}>
+    <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-background to-secondary/30 p-4 overflow-y-auto transform transition-transform ease-in-out duration-300 z-20 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} ${isSidebarOpen ? 'block' : 'hidden'}`}> {/* Corrected className syntax */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Histórico</h2>
         {/* Close button */}
