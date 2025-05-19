@@ -32,12 +32,12 @@ export default function HomePage() {
       <HistorySidebar onSessionSelect={setCurrentSessionId} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       {/* Button to toggle sidebar visibility */}
       {!isSidebarOpen && ( // Only show the button when the sidebar is closed
-        <Button onClick={() => setIsSidebarOpen(true)} className="absolute top-4 left-4 z-10">
+        <Button onClick={() => setIsSidebarOpen(true)} className="hidden sm:absolute top-4 left-4 z-10">
           <FaHistory className="h-5 w-5" /> {/* Use the history icon */}
         </Button>
       )}
       <main className="flex flex-col items-center justify-center flex-grow p-4 bg-gradient-to-br from-background to-secondary/30">
-        <div className="absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
+        <div className="hidden sm:absolute top-4 right-4 z-10"> {/* Add z-10 to ensure it's above other content */}
           <ThemeToggle />
         </div>
         {currentSessionId && ( // Show back button only when a session is active
