@@ -24,7 +24,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({ onSessionSelect, isOpen
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Histórico</h2>
         {isOpen && (
-          <button className="text-gray-500 hover:text-gray-700" onClick={() => setIsSidebarOpen(false)}>
+          <button className="text-gray-500 hover:text-gray-700" onClick={onClose}>
             X
           </button>
         )}
