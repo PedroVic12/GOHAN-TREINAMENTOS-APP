@@ -36,7 +36,7 @@ export function PdfUploadForm() {
         e.target.value = "";
         return;
       }
-      if (file.size > 10 * 1024 * 1024) {
+      if (file.size > 50 * 1024 * 1024) {
         setError("O tamanho do arquivo não deve exceder 10MB.");
         setPdfFile(null);
         e.target.value = "";
@@ -148,7 +148,7 @@ export function PdfUploadForm() {
                     arraste e solte
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    Somente PDF (MAX. 10MB)
+                    Somente PDF (MAX. 50MB)
                   </p>
                   {pdfFile && (
                     <p
