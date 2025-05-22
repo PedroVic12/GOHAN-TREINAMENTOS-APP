@@ -2,7 +2,7 @@
 
 **LearnLite** é uma aplicação web construída com Next.js que utiliza Inteligência Artificial Generativa para oferecer aos usuários resumos, flashcards e quizzes gerados a partir de documentos PDF enviados. A interface é limpa e moderna, desenvolvida com Tailwind CSS e componentes da ShadCN UI.
 
-### Acesse o LearnLite: https://learnlitetest.vercel.app
+### Acesse o LearnLite: https://learnlite.vercel.app
 
 ## Versão Desktop
 
