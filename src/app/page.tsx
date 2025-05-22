@@ -38,7 +38,7 @@ export default function HomePage() {
         onClose={() => setIsSidebarOpen(false)}
       />
       {/* Button to toggle sidebar visibility */}
-      <main className="flex flex-col bg-red items-center flex-grow p-4">
+      <main className="flex flex-col bg-red items-center flex-grow py-4 px-8 sm:px-4">
         <div className="flex flex-row justify-between h-[5%] w-full mb-16 z-10 ">
           <Button onClick={() => setIsSidebarOpen(true)} className="block">
             <FaHistory className="h-5 w-5" /> {/* Use the history icon */}
