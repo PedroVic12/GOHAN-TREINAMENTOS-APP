@@ -2,7 +2,7 @@
 
 **LearnLite** é uma aplicação web construída com Next.js que utiliza Inteligência Artificial Generativa para oferecer aos usuários resumos, flashcards e quizzes gerados a partir de documentos PDF enviados. A interface é limpa e moderna, desenvolvida com Tailwind CSS e componentes da ShadCN UI.
 
-### Acesse o LearnLite: https://learnlitetest.vercel.app
+### Acesse o LearnLite: https://learnlite.vercel.app
 
 ## Versão Desktop
 
@@ -60,23 +60,20 @@
     
    ```bash
    git clone <repository-url>
-   cd gemini-study
+   cd learnlite
    
 2. Instale as dependências:
 
    ```bash
-   git clone <repository-url>
-   cd gemini-study
+   npm install
+   #ou
+   yarn install
 
 3. Configure as variáveis de ambiente:
 Crie um arquivo .env.local na raiz do projeto e adicione sua chave de API para o Google Gemini:
 
     ```ini
-    npm run dev
-      # ou
-    yarn run dev
-    
-  Geralmente disponível em http://localhost:9002.
+    GEMINI_API_KEY=<sua-chave>
 
 4. Inicie o app Next.js:
   
