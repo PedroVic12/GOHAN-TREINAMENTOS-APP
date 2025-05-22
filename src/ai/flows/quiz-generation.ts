@@ -39,10 +39,11 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateQuizOutputSchema},
   prompt: `Você é um especialista em criar quizzes a partir de textos.
 
-  Crie um quiz com 10 perguntas em português do Brasil com base no conteúdo abaixo (que está em português). Cada pergunta deve ter 4 opções de múltipla escolha, com uma resposta correta.
+  Crie um quiz com 12 perguntas em português do Brasil com base no conteúdo abaixo (que está em português). Cada pergunta deve ter 4 opções de múltipla escolha, com uma resposta correta.
 
   O quiz deve testar o entendimento do usuário sobre o material. Foque nos fatos e conceitos chave. As perguntas, opções e a resposta correta devem estar em português do Brasil.
 
+  No final do quiz, forneça o numero de acertos e erros do usuário e calculo o percentual de acertos com sua nota final.
   Conteúdo: {{{pdfContent}}}
   `,
 });
