@@ -83,10 +83,22 @@ export default function HomePage() {
           <PdfUploadForm />
         )}
         <footer className="flex flex-col items-center py-4 mt-8 text-sm text-muted-foreground gap-2">
+
+                    This is a fork from Pedro Victor Veras. Eu desde que comecei a programar em frontend em flutter busquei fazer um aplicatvo para gerenciar minhas tarefas e projetos
+
+          <p>
+            Eu criei o Gohan treinamentos em FLutter em 2023 com lista de tarefas, notes app, Kanban Board.
+
+            
+          </p>
+
+          <p>
+            Em 2024, decicdi mover meu aplicativo para React e Vite, consegui um alarm clock, lista de tarefas com boas praticas com signal e tambem fiz um Calistenia App com VibeCoding e principalmente um Habit Tracker que eu uso todos os dias com Ionic
+          </p>
+
           <a href="https://www.linkedin.com/in/fcsscoder/" target="_blank">
             <FaLinkedin size={35} color="#6666FF" />
           </a>
-          Developed by Caio Souza
         </footer>
       </main>{" "}
       {/* This is the single root element returned */}
