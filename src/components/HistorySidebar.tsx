@@ -35,7 +35,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
               Histórico
             </h2>
             <button
-              className="text-primary dark:text-white hover:text-terciary"
+              className="text-primary dark:text-white hover:text-terciary duration-200"
               onClick={onClose}>
               X
             </button>
@@ -50,7 +50,7 @@ const HistorySidebar: React.FC<HistorySidebarProps> = ({
               {sessions.map((session) => (
                 <li
                   key={session.id}
-                  className="cursor-pointer p-2 border-b-2 border-primary text-primary dark:text-white hover:text-terciary dark:border-white"
+                  className="cursor-pointer p-2 border-b-2 border-primary text-primary dark:text-white duration-200 hover:text-terciary dark:border-white"
                   onClick={() => handleSessionClick(session)}>
                   {session.name ||
                     session.originalFileName ||

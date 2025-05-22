@@ -30,6 +30,7 @@ export default {
         },
         terciary: {
           DEFAULT: "#9c9ca4",
+          hover: "#bdbdc7",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

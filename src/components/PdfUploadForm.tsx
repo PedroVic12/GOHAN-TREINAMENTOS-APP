@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { UploadCloud, Loader2 } from "lucide-react";
-import Logo from "./imgs/logo.png";
+import Logo from "../public/imgs/logo.png";
 import Image from "next/image";
 
 export function PdfUploadForm() {
